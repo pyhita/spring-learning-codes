@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <context:component-scan base-package="com.yangtao.entity"/>
+    <context:component-scan base-package="com.yangtao.service"/>
+    <context:component-scan base-package="com.yangtao.mapper"/>
+
+    <bean id="demo" class="com.yangtao.entity.Demo"/>
+
+<!--    Spring 整合Mybatis-->
+    <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:/jdbc.properties</value>
+            </list>
+        </property>
+    </bean>
+
+<!--    配置数据源-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+<!--    配置sqlSessionFactoryBean-->
+    <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+<!--        设置别名-->
+        <property name="typeAliasesPackage" value="com.yangtao.entity"/>
+<!--        制定 Mapper localations-->
+        <property name="mapperLocations" value="classpath:/com/yangtao/mapper/*.xml"/>
+    </bean>
+
+<!--    配置MapperConfigur 生成代理类-->
+    <bean id="mappperConfigur" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryBean"/>
+        <property name="basePackage" value="com.yangtao.mapper"/>
+    </bean>
+
+<!--    配置自定义类型转换器-->
+    <bean id="conversionServiceFactory" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="com.yangtao.config.String2DateConverter"/>
+            </set>
+        </property>
+    </bean>
+
+<!--    配置校验Bean-->
+    <bean id="validatorFactory" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
+    </bean>
+
+    <!--    将校验器的工厂Bean放到mvc中-->
+    <mvc:annotation-driven conversion-service="conversionServiceFactory" validator="validatorFactory"/>
+</beans>

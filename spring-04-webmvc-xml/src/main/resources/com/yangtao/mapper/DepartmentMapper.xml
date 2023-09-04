@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yangtao.mapper.DepartmentMapper">
+    <resultMap type="Department" id="DepartmentResult">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="tel" column="tel"/>
+    </resultMap>
+
+
+    <select id="getAll" resultMap="DepartmentResult">
+        SELECT
+            t.id,
+            t.name,
+            t.tel
+        FROM tbl_dept as t
+    </select>
+
+    <select id="findDpartmentsByName" resultMap="DepartmentResult">
+        SELECT
+            t.id,
+            t.name,
+            t.tel
+        FROM tbl_dept as t
+        <where>
+            <if test="name != null">
+                t.name = '${name}'
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteDeptById">
+        DELETE FROM tbl_dept WHERE id = '${deptId}'
+    </delete>
+
+</mapper>
