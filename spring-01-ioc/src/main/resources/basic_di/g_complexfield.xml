@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+  <bean id="cat" class="com.yangtao.basic_di.g_complexfield.bean.Cat"/>
+
+  <bean class="com.yangtao.basic_di.g_complexfield.bean.Person">
+    <property name="names">
+      <array>
+        <value>张三</value>
+        <value>三三来迟</value>
+      </array>
+    </property>
+    <property name="tels">
+      <list>
+        <value>13888</value>
+        <value>15999</value>
+      </list>
+    </property>
+    <property name="cats">
+      <set>
+        <ref bean="cat"/>
+      </set>
+    </property>
+    <property name="events">
+      <map>
+        <entry key="event1" value="xxxx"/>
+        <entry key="cat" value-ref="cat"/>
+      </map>
+    </property>
+    <property name="props">
+      <props>
+        <prop key="xxxx">yyyyy</prop>
+      </props>
+    </property>
+  </bean>
+</beans>

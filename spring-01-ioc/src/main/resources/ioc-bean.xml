@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <bean id="fish" class="com.yangtao.bean.d_lifecycle.Fish"
+    init-method="myInit"
+    destroy-method="myDestroy">
+    <property name="kind" value="dog fish"/>
+    <property name="price" value="11.1"/>
+  </bean>
+
+  <bean class="com.yangtao.bean.d_lifecycle.MyInstantiatinoAwareBeanPostProcessor"/>
+  <bean class="com.yangtao.bean.d_lifecycle.MyBeanPostProcessor"/>
+  <bean class="com.yangtao.bean.d_lifecycle.MyBeanFactoryPostProcessor"/>
+</beans>
