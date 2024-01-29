@@ -1,7 +1,7 @@
 package com.yangtao.configuration;
 
-import com.yangtao.configuration.a_module.config.TavernConfig;
-import org.springframework.context.ApplicationContext;
+import com.yangtao.configuration.b_profile_conditional.component.Bartender;
+import com.yangtao.configuration.b_profile_conditional.config.TavernConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
@@ -10,9 +10,13 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  */
 public class TavernApplication {
     public static void main(String[] args) {
-        ApplicationContext ctx = new AnnotationConfigApplicationContext(TavernConfig.class);
-        for (String definitionName : ctx.getBeanDefinitionNames()) {
-            System.out.println("definitionName = " + definitionName);
+        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
+        // 设置运行时环境
+        ctx.getEnvironment().setActiveProfiles("city");
+        ctx.register(TavernConfig.class);
+        ctx.refresh();
+        for (String name : ctx.getBeanNamesForType(Bartender.class)) {
+            System.out.println(name);
         }
     }
 
