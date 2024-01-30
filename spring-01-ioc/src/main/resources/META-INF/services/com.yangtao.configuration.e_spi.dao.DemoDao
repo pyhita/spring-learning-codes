@@ -1,0 +1,2 @@
+com.yangtao.configuration.e_spi.dao.impl.MySQLDemoDaoImpl
+com.yangtao.configuration.e_spi.dao.impl.OracleDemoDaoImpl
