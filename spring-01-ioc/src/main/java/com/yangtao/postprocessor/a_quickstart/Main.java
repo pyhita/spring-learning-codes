@@ -14,6 +14,8 @@ public class Main {
             "com.yangtao.postprocessor.a_quickstart");
         Dog dog = ctx.getBean(Dog.class);
         System.out.println("dog = " + dog);
+
+
     }
 
 }
