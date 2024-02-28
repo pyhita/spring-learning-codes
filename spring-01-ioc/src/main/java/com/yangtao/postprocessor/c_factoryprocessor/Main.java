@@ -12,7 +12,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  * @Date: 2024/2/19
  */
 public class Main {
-
     public static void main(String[] args) {
 
         ApplicationContext ctx = new AnnotationConfigApplicationContext(MainConfig.class);

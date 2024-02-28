@@ -16,7 +16,6 @@ import org.springframework.util.StringUtils;
  */
 @Component
 public class ColorNameSetterFactoryPostProcessor implements BeanFactoryPostProcessor {
-
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory)
         throws BeansException {

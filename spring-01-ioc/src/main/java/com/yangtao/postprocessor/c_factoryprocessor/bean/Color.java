@@ -8,6 +8,5 @@ import lombok.Data;
  */
 @Data
 public abstract class Color {
-
     protected String name;
 }
