@@ -6,6 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/spring-04-webmvc-xml/pom.xml" />
         <option value="$PROJECT_DIR$/spring-04-web/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-04-webmvc-anno/pom.xml" />
         <option value="$PROJECT_DIR$/spring-01-ioc/pom.xml" />
         <option value="$PROJECT_DIR$/spring-00-intro/pom.xml" />
         <option value="$PROJECT_DIR$/spring-02-aop/pom.xml" />

@@ -15,7 +15,7 @@
                 ids.push(selectedIds[i].value);
             }
             // $.post("${pageContext.request.contextPath}/user/batchDelete", {ids: ids}, function(data) {
-            $.post("http://localhost:8081/spring-webmvc/user/batchDelete", {ids: ids}, function(data) {
+            $.post("http://localhost:8082/mvc2/user/batchDelete", {ids: ids}, function(data) {
                 alert(data)
             });
         });
